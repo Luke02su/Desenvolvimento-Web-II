@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teste</title>
+</head>
+<body>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">Nome</th>
+                <th scope="col">Descrição</th>
+                <th scope="col">Preço</th>
+                <!-- <th scope="col">Estoque</th>-->
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="product : ${productsList}"> <!--th:eah realiza o laço de repetição na lista de produtos-->
+                <td th:text="${product.name}"></td> <!--th:text injeta valores da model no html-->
+                <td th:text="${product.description}"></td>
+                <td th:text="${product.price}"></td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>
+
+<!--Integração automática com o Spring MVC pelo uso de Model-->
