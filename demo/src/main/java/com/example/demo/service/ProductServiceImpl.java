@@ -16,16 +16,16 @@ public class ProductServiceImpl implements ProductService {
 
     @Override //sobreposição
     public List<Product> getAllProducts() {
-        return productRepository.findAll();
+        return productRepository.findAll(); // findAll vem do repository (devolve lista de produtos)
     }
 
     @Override
-    public void saveProduct(Product product) {
+    public void saveProduct(Product product) { //cria e atualiza (insert e update)
         productRepository.save(product);
     }
     
     @Override
-    public Product getProductById(long id) {
+    public Product getProductById(long id) { 
         Optional<Product> optional = productRepository.findById(id); //Optional Evita NullPointerException
         Product product = null;
         if (optional.isPresent()) {

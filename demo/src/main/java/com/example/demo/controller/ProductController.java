@@ -16,8 +16,8 @@ public class ProductController {
     @Autowired //Injeta automaticamente a dependência do serviço
     private ProductService productService;
 
-    @GetMapping("/product")
-    public String index(Model model) {
+    @GetMapping("/product") //Mapear requisição get
+    public String index(Model model) { //listar 
         model.addAttribute("productsList", productService.getAllProducts()); //model objeto que leva dados do backend para a view
         return "product/index"; //mapeia requisições GET para o método index()
     }

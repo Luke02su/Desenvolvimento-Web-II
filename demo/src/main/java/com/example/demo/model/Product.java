@@ -20,6 +20,13 @@ public class Product {
     @Column(name = "description")
     private String description;
 
+    @Column(name = "price", nullable = false) 
+    private float price;
+
+    @Column(name = "stock", nullable = false) 
+    private int stock;
+
+
     public Long getId() {
         return id;
     }
@@ -43,4 +50,21 @@ public class Product {
     public void setDescription(String description) {
         this.description = description;
     }
+    
+    public float getPrice() {
+        return price;
+    }
+
+    public void setPrice(Float price) {
+        this.price = price;
+    }
+    
+    public int getStock() {
+        return stock;
+    }
+
+    public void setStock(int stock) {
+        this.stock = stock;
+    }
+    
 }
