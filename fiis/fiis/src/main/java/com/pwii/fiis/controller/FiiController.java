@@ -3,10 +3,12 @@ package com.pwii.fiis.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import jakarta.validation.Valid;
 
 import com.pwii.fiis.model.Fii;
 import com.pwii.fiis.service.FiiService;
@@ -22,30 +24,32 @@ public class FiiController {
         return "fii/index"; //mapeia requisições GET para o método index()
     }
 
-    @GetMapping("/showNewFiiForm") //Mapeia requisiões HTTP para métodos
-    public String showNewFiiForm(Model model) {
-        Fii fii = new Fii();
-        model.addAttribute("fii", fii);
-        return "new_fii";
+    @GetMapping("/fii/create") //Mapeia requisiões HTTP para métodos
+    public String create(Model model) {
+        model.addAttribute("fii", new Fii());
+        return "/fii/create";
     }
 
-    @PostMapping("/saveFii")  //Mapeia requisiões HTTP para métodos
-    public String saveFii(@ModelAttribute("fii") Fii fii) {
+    @PostMapping("/fii/save")  //Mapeia requisiões HTTP para métodos
+    public String postMethodName(@ModelAttribute @Valid Fii fii, BindingResult result) {
+        if (result.hasErrors()) {
+            return "fii/create";
+        }
         fiiService.saveFii(fii);
-        return "redirect:/";
+        return "redirect:/product";
     }
 
-    @GetMapping("/deleteFormForUpdate/{id}")
-    public String showFormForUpdate(@PathVariable(value = "id") long id, Model model) {
+    @GetMapping("/fii/delete/{id}")
+    public String deleteFii(@PathVariable long id) {
+        this.fiiService.deleteFiiById(id);
+        return "redirect:/fii";
+    }
+
+    @GetMapping("/fii/edit/{id}")
+    public String edit(@PathVariable Long id, Model model) {
         Fii fii = fiiService.getFiiById(id);
         model.addAttribute("fii", fii);
-        return "update_product";
-    }
-
-    @GetMapping("/deleteFii/{id}")
-    public String deleteFii(@PathVariable(value = "id") long id) {
-        fiiService.deleteFiiById(id);
-        return "redirect:/";
+        return "fii/edit";
     }
 }
 

@@ -29,9 +29,16 @@
                     <td scope="row" th:text="${fii.cotacao}"></td>
                     <td scope="row" th:text="${fii.pvp}"></td>
                     <td scope="row" th:text="${fii.dy}"></td>
+                    <td><a th:href="@{/fii/edit/{id}(id=${fii.id})}">Editar</a></td>
+                    <td><a th:href="@{/fii/delete/{id}(id=${fii.id})}">Deletar</a></td>
                 </tr>
             </tbody>
         </table>
+        <div class="row">
+            <a th:href="@{/product/create}">
+              <button class="btn btn-primary">Cadastrar Produto</button>
+            </a>
+        </div>
     </div>
 </body>
 </html>
