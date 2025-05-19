@@ -27,7 +27,7 @@ public class FiiController {
     @GetMapping("/fii/create") //Mapeia requisiões HTTP para métodos
     public String create(Model model) {
         model.addAttribute("fii", new Fii());
-        return "/fii/create";
+        return "fii/create";
     }
 
     @PostMapping("/fii/save")  //Mapeia requisiões HTTP para métodos
@@ -36,7 +36,7 @@ public class FiiController {
             return "fii/create";
         }
         fiiService.saveFii(fii);
-        return "redirect:/product";
+        return "redirect:/fii";
     }
 
     @GetMapping("/fii/delete/{id}")
