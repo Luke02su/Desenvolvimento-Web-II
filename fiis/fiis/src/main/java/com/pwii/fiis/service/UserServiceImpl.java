@@ -16,7 +16,6 @@ import org.springframework.stereotype.Service;
 
 import com.pwii.fiis.model.User;
 import com.pwii.fiis.repository.UserRepository;
-import com.pwii.fiis.service.IUserService;
 
 @Service
 public class UserServiceImpl implements IUserService, UserDetailsService {
