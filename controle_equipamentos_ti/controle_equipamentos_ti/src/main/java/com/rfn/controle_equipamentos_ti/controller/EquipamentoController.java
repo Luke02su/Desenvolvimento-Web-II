@@ -14,21 +14,19 @@ import com.rfn.controle_equipamentos_ti.service.EquipamentoService;
 @Controller
 public class EquipamentoController {
 
-    
     @Autowired //Injeta automaticamente a dependência do serviço
     private EquipamentoService equipamentoService;
 
-        @PostMapping("/equipamento/save")
-            public String salvarEquipamento(@ModelAttribute @Validated Equipamento equipamento, BindingResult result) {
-                if (result.hasErrors()) {
-                    return "computador/create";
-                }
-
-                // Agora salva o computador
-                equipamentoService.saveEquipamento(equipamento); // ou via computadorService.saveComputador(computador)
-               return "redirect:/computador";
+    @PostMapping("/equipamento/save")
+    public String salvarEquipamento(@ModelAttribute @Validated Equipamento equipamento, BindingResult result) {
+        if (result.hasErrors()) {
+            return "computador/create";
         }
-    
-}
+
+        // Agora salva o computador
+        equipamentoService.saveEquipamento(equipamento); // ou via computadorService.saveComputador(computador)
+        return "redirect:/computador";
+        } 
+    }
 
 

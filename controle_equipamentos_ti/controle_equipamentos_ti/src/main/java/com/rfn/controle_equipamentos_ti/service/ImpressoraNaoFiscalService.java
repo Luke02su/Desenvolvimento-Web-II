@@ -6,7 +6,7 @@ import com.rfn.controle_equipamentos_ti.model.ImpressoraNaoFiscal;
 
 public interface ImpressoraNaoFiscalService {
     List<ImpressoraNaoFiscal> getAllImpressorasNaoFiscais(); //Ideal não é acessar repository direto
-    //void saveImpressoraNaoFiscal(ImpressoraNaoFiscal impressoraNaoFiscal);
-    //ImpressoraNaoFiscalService getImpressoraNaoFiscalsById(Long pk_impressora);
-   // void deleteImpressoraNaoFiscalsById(Long pk_impressora);
+    void saveImpressoraNaoFiscal(ImpressoraNaoFiscal impressoraNaoFiscal);
+    ImpressoraNaoFiscal getImpressoraNaoFiscalById(Long pk_impressora);
+    void deleteImpressoraNaoFiscalById(Long pk_impressora);
 }

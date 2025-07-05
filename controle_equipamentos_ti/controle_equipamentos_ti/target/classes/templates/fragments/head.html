@@ -28,7 +28,7 @@
 <th:block th:fragment="header()">
   <nav class="navbar navbar-expand-lg navbar-green bg-success fixed-top">
     <div class="container-fluid">
-      <a class="navbar-brand text-white" href="/" style="font-weight: bold;">
+      <a class="navbar-brand text-white" style="font-weight: bold;">
         Controle de Equipamentos de TI da RFN
       </a>
       
@@ -53,9 +53,9 @@
             <div class="dropdown-menu" aria-labelledby="equipamentosDropdown">
               <a class="dropdown-item" th:href="@{/computador}">Computadores</a>
               <a class="dropdown-item" th:href="@{/impressoraNaoFiscal}">Impressoras não fiscais</a>
-              <a class="dropdown-item" sec:authorize="hasAuthority('Admin')" th:href="@{/computador/create}">Genéricos</a>
+              <a class="dropdown-item" sec:authorize="hasAuthority('Admin')" th:href="@{/generico}">Genéricos</a>
               <div class="dropdown-divider"></div>
-              <a class="dropdown-item" th:href="@{/impressoraNaoFiscal}">Descartes</a>
+              <a class="dropdown-item" th:href="@{/descarte}">Descartes</a>
             </div>
           </li>
 
@@ -79,7 +79,6 @@
             <a class="nav-link" th:href="@{/dashboardBI}">Dashboard BI</a>
           </li>
         </ul>
-        
       </div>
     </div>
   </nav>

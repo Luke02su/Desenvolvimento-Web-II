@@ -52,7 +52,6 @@ public class ComputadorController {
         return "redirect:/computador";
     }
 
-
     @GetMapping("/computador/delete/{pk_computador}")
     public String deleteComputador(@PathVariable Long pk_computador) {
         this.computadorService.deleteComputadorById(pk_computador);

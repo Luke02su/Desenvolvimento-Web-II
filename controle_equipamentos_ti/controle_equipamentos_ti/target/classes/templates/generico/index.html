@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="~{/../fragments/head :: head('Lista de impressoras não fiscais')}">
+<head th:replace="~{/../fragments/head :: head('Lista de genéricos')}">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
@@ -10,7 +10,7 @@
 <br>
     <div class="container-fluid ps-3 pe-3">
         <div class="d-flex justify-content-between align-items-center mb-4">
-            <a th:href="@{/impressoraNaoFiscal/create}" class="btn btn-success">
+            <a th:href="@{/generico/create}" class="btn btn-success">
                 ➕ Cadastrar novo
             </a>
         </div>
@@ -22,7 +22,7 @@
           <script>
             document.getElementById("filtroInput").addEventListener("input", function () {
               const filtro = this.value.toLowerCase();
-              const linhas = document.querySelectorAll("#tabelaImpressoras tbody tr");
+              const linhas = document.querySelectorAll("#tabelaGenericos tbody tr");
             
               linhas.forEach(linha => {
                 const textoLinha = linha.innerText.toLowerCase();
@@ -32,38 +32,34 @@
             </script>
      
         <div class="custom-table-wrapper table-responsive table-sm">
-            <table id="tabelaImpressoras" class="table table-hover table-bordered align-middle text-center">
+            <table id="tabelaGenericos" class="table table-hover table-bordered align-middle text-center">
                 <thead class=>
                     <tr>
                         <th>Nº série</th>
                         <th>Placa</th>
                         <th>Tipo</th>
                         <th>Modelo</th>
-                        <th>Revisão recente</th>
-                        <th>Data de revisão</th>
-                        <th>Motivo de revisão</th>
+                        <th>Descrição</th>
                         <th>Localização atual</th>
                         <th>Enviado</th>
                         <th>Ações</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr th:each="impressora : ${impressorasList}">
-                        <td th:text="${impressora.equipamento.pk_num_serie}"></td>
-                        <td th:text="${impressora.equipamento.placa}"></td>
-                        <td th:text="${impressora.equipamento.tipo}"></td>
-                        <td th:text="${impressora.equipamento.modelo}"></td>
-                        <td th:text="${impressora.revisao_recente}"></td>
-                        <td th:text="${impressora.data_revisao}"></td>
-                        <td th:text="${impressora.motivo_revisao}"></td>
-                        <td th:text="${impressora.equipamento.localizacao_atual}"></td>
-                        <td th:text="${impressora.equipamento.enviado}"></td>
+                    <tr th:each="generico : ${genericoList}">
+                        <td th:text="${generico.equipamento.pk_num_serie}"></td>
+                        <td th:text="${generico.equipamento.placa}"></td>
+                        <td th:text="${generico.equipamento.tipo}"></td>
+                        <td th:text="${generico.equipamento.modelo}"></td>
+                        <td th:text="${generico.descricao}"></td>
+                        <td th:text="${generico.equipamento.localizacao_atual}"></td>
+                        <td th:text="${generico.equipamento.enviado}"></td>
                         <td>
                             <div class="btn-group" role="group">
-                                <a th:href="@{/impressoraNaoFiscal/edit/{id}(id=${impressora.pk_impressora})}"
+                                <a th:href="@{/generico/edit/{id}(id=${generico.pk_equipamento_generico})}"
                                    class="btn btn-sm btn-warning">✏️ Editar</a>
-                                <a th:href="@{/impressoraNaoFiscal/delete/{id}(id=${impressora.pk_impressora})}"
-                                   class="btn btn-sm btn-danger" onclick="return confirm('Tem certeza que deseja deletar?')">🗑️ Deletar</a>
+                                <a th:href="@{/generico/delete/{id}(id=${generico.pk_equipamento_generico})}"
+                                   class="btn btn-sm btn-danger" onclick="return confirm('Tem certeza que deseja deletar o equipamento genérico?')">🗑️ Deletar</a>
                             </div>
                         </td>
                     </tr>

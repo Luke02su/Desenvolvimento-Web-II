@@ -42,6 +42,8 @@
                         <th>Revisão recente</th>
                         <th>Data de revisão</th>
                         <th>Motivo de revisão</th>
+                        <th>Localização atual</th>
+                        <th>Enviado</th>
                         <th>Ações</th>
                     </tr>
                 </thead>
@@ -58,9 +60,9 @@
                         <td th:text="${impressora.equipamento.enviado}"></td>
                         <td>
                             <div class="btn-group" role="group">
-                                <a th:href="@{/impressora/edit/{id}(id=${impressora.pk_impressora})}"
+                                <a th:href="@{/impressoraNaoFiscal/edit/{id}(id=${impressora.pk_impressora})}"
                                    class="btn btn-sm btn-warning">✏️ Editar</a>
-                                <a th:href="@{/impressora/delete/{id}(id=${impressora.pk_impressora})}"
+                                <a th:href="@{/impressoraNaoFiscal/delete/{id}(id=${impressora.pk_impressora})}"
                                    class="btn btn-sm btn-danger" onclick="return confirm('Tem certeza que deseja deletar?')">🗑️ Deletar</a>
                             </div>
                         </td>

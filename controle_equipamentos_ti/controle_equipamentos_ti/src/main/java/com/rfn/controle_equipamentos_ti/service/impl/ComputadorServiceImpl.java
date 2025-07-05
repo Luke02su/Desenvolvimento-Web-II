@@ -42,12 +42,5 @@ public class ComputadorServiceImpl implements ComputadorService {
     public void deleteComputadorById(Long pk_computador) {
        computadorRepository.deleteById(pk_computador);
     }
-    
-   // @Override
-    //public Computador getComputadorById(String fk_num_serie) {
-       
-    //}
-
-
 }
 
