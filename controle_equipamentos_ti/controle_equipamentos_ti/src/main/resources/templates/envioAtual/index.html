@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{/../fragments/head :: head('Lista de Envios de Equipamentos')}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <div th:replace="~{/../fragments/head :: header}"></div>
+<br>
+<br>
+<br>
+    <div class="container-fluid ps-3 pe-3">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <a th:href="@{/envioAtual/create}" class="btn btn-success">
+                ➕ Cadastrar novo Envio
+            </a>
+        </div>
+
+        <div class="input-group mb-3">
+            <input type="text" id="filtroInput" class="form-control" placeholder="🔍 Filtrar qualquer coluna...">
+        </div>
+          
+          <script>
+            document.getElementById("filtroInput").addEventListener("input", function () {
+              const filtro = this.value.toLowerCase();
+              const linhas = document.querySelectorAll("#tabelaEnvios tbody tr"); // Alterado para tabelaEnvios
+            
+              linhas.forEach(linha => {
+                const textoLinha = linha.innerText.toLowerCase();
+                linha.style.display = textoLinha.includes(filtro) ? "" : "none";
+              });
+            });
+            </script>
+      
+        <div class="custom-table-wrapper table-responsive table-sm">
+            <table id="tabelaEnvios" class="table table-hover table-bordered align-middle text-center">
+                <thead>
+                    <tr>
+                        <th>ID Envio</th>
+                        <th>Nº Série Equip.</th>
+                        <th>Origem</th>
+                        <th>Loja Destino (ID)</th>
+                        <th>Motivo</th>
+                        <th>Data Envio</th>
+                        <th>Usuário Envio</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="envioAtual : ${enviosList}"> <td th:text="${envioAtual.pk_envio}"></td>
+                        <td th:text="${envioAtual.equipamento.pk_num_serie}"></td> 
+                        <td th:text="${envioAtual.origem}"></td>
+                        <td th:text="${envioAtual.lojaDestino.pk_loja}"></td> 
+                        <td th:text="${envioAtual.motivo}"></td>
+                        <td th:text="${envioAtual.data_envio}"></td>
+                        <td th:text="${envioAtual.usuario_envio}"></td>
+                        <td>
+                            <div class="btn-group" role="group">
+                                <a th:href="@{/envioAtual/edit/{id}(id=${envioAtual.pk_envio})}"
+                                   class="btn btn-sm btn-warning">✏️ Editar</a>
+                                <a th:href="@{/envioAtual/delete/{id}(id=${envioAtual.pk_envio})}"
+                                   class="btn btn-sm btn-danger" onclick="return confirm('Tem certeza que deseja deletar o envio ${envioAtual.pk_envio} do equipamento ${envioAtual.equipamento?.pk_num_serie}?')">🗑️ Deletar</a>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <hr>
+    <div th:replace="~{/../fragments/footer :: footer}"></div>
+</body>
+</html>
