@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+    <th:block th:replace="~{/../fragments/head :: head('Atualizar Envio')}"></th:block>
+    <body>
+        <th:block th:replace="~{/../fragments/head :: header}"></th:block>
+        <div class="container">
+        <h1>Atualizar Envio</h1> 
+        <form action="#" th:action="@{/envioAtual/save}" th:object="${envioAtual}" method="POST">
+            <input type="hidden" th:field="*{pk_envio}" />
+
+            <div class="form-group row">
+                <label for="fk_num_serie" class="col-sm-2 col-form-label">Número de série (Equipamento):</label>
+                <div class="col-sm-10">
+                    <select th:field="*{equipamento}" id="fk_num_serie" class="form-control" required>
+                        <option value="">Selecione o equipamento</option>
+                        <option th:each="equip : ${equipamentos}" 
+                                th:value="${equip.pk_num_serie}" 
+                                th:text="${equip.pk_num_serie} + ' - ' + ${equip.tipo} + ' ' + ${equip.modelo}"
+                                th:selected="${envioAtual.equipamento != null and envioAtual.equipamento.pk_num_serie == equip.pk_num_serie}">
+                        </option>
+                    </select>
+                    <p th:if="${#fields.hasErrors('equipamento')}" th:errorclass="text-danger" th:errors="*{equipamento}" />
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="fk_loja" class="col-sm-2 col-form-label">Loja Destino:</label>
+                <div class="col-sm-10">
+                    <select th:field="*{lojaDestino}" id="fk_loja" class="form-control" required>
+                        <option value="">Selecione a loja de destino</option>
+                        <option th:each="lj : ${lojas}" 
+                                th:value="${lj.pk_loja}" 
+                                th:text="${lj.pk_loja} + ' - ' + ${lj.cidade} + ' (' + ${lj.gerente} + ')'"
+                                th:selected="${envioAtual.lojaDestino != null and envioAtual.lojaDestino.pk_loja == lj.pk_loja}">
+                        </option>
+                    </select>
+                    <p th:if="${#fields.hasErrors('lojaDestino')}" th:errorclass="text-danger" th:errors="*{lojaDestino}" />
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="motivo" class="col-sm-2 col-form-label">Motivo:</label>
+                <div class="col-sm-10">
+                    <input type="text" th:field="*{motivo}" class="form-control" id="motivo" placeholder="Digite o motivo do envio" required>
+                    <p th:if="${#fields.hasErrors('motivo')}" th:errorclass="text-danger" th:errors="*{motivo}" />
+                </div>
+            </div>
+            
+            <button type="submit" class="btn btn-primary">Salvar Envio</button>
+            <a th:href="@{/envios}" class="btn btn-secondary">Cancelar</a>
+        </form>
+    </div>
+    <th:block th:replace="~{/../fragments/footer :: footer}"></th:block>
+</body>
+</html>

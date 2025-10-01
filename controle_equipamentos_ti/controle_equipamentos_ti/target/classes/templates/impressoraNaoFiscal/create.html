@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+    <th:block th:replace="~{/../fragments/head :: head('Cadastrar impressora não fiscal')}"></th:block>
+    <body>
+        <th:block th:replace="~{/../fragments/head :: header}"></th:block>
+        <div class="container">
+        <h1>Cadastrar impressora não fiscal</h1>
+        <form action="#" th:action="@{/impressoraNaoFiscal/save}" th:object="${impressoraNaoFiscal}" method="POST">
+            <!-- Campo necessário para que o save saiba que não estamos criando, mas editando um produto -->
+            <input type="hidden" th:field="*{pk_impressora}" />
+
+            <div class="form-group row">
+                <label for="fk_num_serie" class="col-sm-2 col-form-label">Número de série:</label>
+                <div class="col-sm-10">
+                    <input type="text" ith:field="*{equipamento.pk_num_serie}" th:field="*{equipamento.pk_num_serie}" id="fk_num_serie" class="form-control" name="fk_num_serie" placeholder="Digite o número de série do computador">
+                    <p th:if="${#fields.hasErrors('equipamento.pk_num_serie')}" th:errorclass="text-danger" th:errors="*{equipamento.pk_num_serie}" />
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="placa" class="col-sm-2 col-form-label">Placa:</label>
+                <div class="col-sm-10">
+                    <input type="text" ith:field="*{equipamento.placa}" th:field="*{equipamento.placa}" id="placa" class="form-control" name="placa" placeholder="Digite a placa do computador">
+                    <p th:if="${#fields.hasErrors('equipamento.placa')}" th:errorclass="text-danger" th:errors="*{placa}" />
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="tipo" class="col-sm-2 col-form-label">Tipo:</label>
+                <div class="col-sm-10">
+                    <input type="text" ith:field="*{equipamento.tipo}" th:field="*{equipamento.tipo}" id="tipo" class="form-control" name="tipo" placeholder="Digite o tipo do computador">
+                    <p th:if="${#fields.hasErrors('equipamento.tipo')}" th:errorclass="text-danger" th:errors="*{tipo}" />
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="modelo" class="col-sm-2 col-form-label">Modelo:</label>
+                <div class="col-sm-10">
+                    <input type="text" ith:field="*{equipamento.modelo}" th:field="*{equipamento.modelo}" id="modelo" class="form-control" name="modelo" placeholder="Digite o modelo do computador">
+                    <p th:if="${#fields.hasErrors('equipamento.modelo')}" th:errorclass="text-danger" th:errors="*{modelo}" />
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="revisao_recente" class="col-sm-2 col-form-label">Revisão recente:</label>
+                <div class="col-sm-10">
+                    <input type="text" th:field="*{revisao_recente}" class="form-control" id="revisao_recente" name="revisao_recente" placeholder="Digite 'Sim' ou 'Não' sobre a revisão recente de computador">
+                    <p th:if="${#fields.hasErrors('revisao_recente')}" th:errorclass="text-danger" th:errors="*{revisao_recente}" />
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="data_revisao" class="col-sm-2 col-form-label">Data de revisão:</label>
+                <div class="col-sm-10">
+                    <input type="date" th:field="*{data_revisao}" class="form-control" id="data_revisao" name="data_revisao" placeholder="Digite 'Sim' ou 'Não' sobre a revisão recente de computador">
+                    <p th:if="${#fields.hasErrors('data_revisao')}" th:errorclass="text-danger" th:errors="*{data_revisao}" />
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="motivo_revisao" class="col-sm-2 col-form-label">Motivo de revisão:</label>
+                <div class="col-sm-10">
+                    <input type="text" th:field="*{motivo_revisao}" class="form-control" id="motivo_revisao" name="data_revisao" placeholder="Digite 'Sim' ou 'Não' sobre a revisão recente de computador">
+                    <p th:if="${#fields.hasErrors('motivo_revisao')}" th:errorclass="text-danger" th:errors="*{motivo_revisao}" />
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label" for="localizacao_atual">Última localização:</label>
+                <div class="col-sm-10">
+                    <input type="number" th:field="*{equipamento.localizacao_atual}" class="form-control" id="localizacao_atual" name="localizacao_atual" placeholder="Digite a última localização do computador" >
+                    <p th:if="${#fields.hasErrors('equipamento.localizacao_atual')}" th:errorclass="text-danger" th:errors="*{equipamento.localizacao_atual}" />
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary"> Cadastrar impressora não fiscal</button>
+        </form>
+    </div>
+    <th:block th:replace="~{/../fragments/footer :: footer}"></th:block>
+</body>
+</html>
